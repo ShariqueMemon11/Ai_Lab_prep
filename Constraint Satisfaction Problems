@@ -1,0 +1,47 @@
+regions = ['A' , 'B' , 'C' , 'D' , 'E' , 'F' , 'G']
+
+neighbours={
+    "A" : ['D' , 'E' , 'F' , 'G'],
+    "B" : ['D' , 'E' , 'F' , 'G'],
+    "C" : ['D' , 'E' , 'F' , 'G'],
+    "D" : ['A' , 'B' , 'C'],
+    "E" : ['A' , 'B' , 'C'],
+    "F" : ['A' , 'B' , 'C'],
+    "G" : ['A' , 'B' , 'C'],
+}
+
+colors=["Red" , "blue"]
+
+def isvalid(region , color , assignment):
+    for neighbour in neighbours[region]:
+        if neighbour in assignment and assignment[neighbour]==color:
+            return False
+    return True
+    
+def checkall(assignment):
+    if len(assignment)==len(regions):
+        return assignment
+    
+    unassigned=[]
+    for region in regions:
+        if region not in assignment:
+            unassigned.append(region)
+    
+    region=unassigned[0]
+    
+    for color in colors:
+        if isvalid(region , color , assignment):
+            assignment[region]=color
+            result=checkall(assignment)
+            if result:
+                return result
+            del assignment[region]
+    
+    return None
+
+solution=checkall({})
+if solution:
+    print ("Solution found")
+    print(solution)
+else:
+    print ("no solution found")
