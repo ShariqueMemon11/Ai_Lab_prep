@@ -9,3 +9,18 @@ result=And(Cat,Animal)
 res=Not(result)
 
 print(res)
+
+
+//using function
+
+from sympy import symbols , And , Not , Implies , Function
+
+cats=Function("cat")
+
+animals=Function("animal")
+
+x=symbols("x")
+
+res1=Implies(cats(x),animals(x))
+
+print(res1)
