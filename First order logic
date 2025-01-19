@@ -1,0 +1,11 @@
+from sympy import symbols , And , Or , Implies , Not
+
+Animal=symbols("Animal")
+
+Cat=symbols("Cat")
+
+result=And(Cat,Animal)
+
+res=Not(result)
+
+print(res)
