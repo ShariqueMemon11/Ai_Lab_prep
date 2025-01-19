@@ -1,0 +1,19 @@
+from sympy import Eq , simplify , solve ,symbols
+
+x = symbols('x')
+
+equation1=Eq(x**2 + 18*x + 3, 0)
+
+equation2 = Eq((x**2) + (18*x) + (32*x + 21*2*x) + (3 + 12), 0)
+
+res1= solve (equation1 , x)
+
+res2= simplify(equation2)
+
+print("SOLUTION OF QUADRATIC EQUATION \n")
+
+print(res1)
+
+print("\n SIMPLIFICATION OF QUADRATIC EQUATION \n")
+
+print(res2)
