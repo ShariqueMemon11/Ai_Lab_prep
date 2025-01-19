@@ -1,0 +1,46 @@
+initial_state = ['A' , 'D' , 'C' , 'B']
+goal_state = ['D' , 'C' , 'B' , 'A']
+
+def herustic(state):
+    score=0
+    for i in range(len(goal_state)):
+        if state[i]==goal_state[i]:
+            score+=1
+    return score
+
+def get_neighbour(state):
+    neighbours=[]
+    for i in range(len(state)-1):
+        neighbour = state[:]
+        neighbour[i] , neighbour[i+1] = neighbour[i+1] , neighbour[i]
+        neighbours.append(neighbour)
+    return neighbours
+
+def hill_climb(initial_state):
+    c_state=initial_state
+    c_score=herustic(c_state)
+    iteration=0
+    
+    while c_score <  len(goal_state):
+        neighbours = get_neighbour(c_state) 
+        next_state=c_state
+        next_score=c_score
+        
+        for neighbour in neighbours:
+            score=herustic(neighbour)
+            if next_score < score:
+                next_state=neighbour
+                next_score=score
+            
+        if c_score==next_score:
+            print("no change accoured")
+            break
+        
+        c_state=next_state
+        c_score=next_score
+        iteration+=1
+    
+    if(c_score==len(goal_state)):
+        print(f"goal state reached in {iteration} iterations : current state is {c_state}")
+    
+hill_climb(initial_state)
